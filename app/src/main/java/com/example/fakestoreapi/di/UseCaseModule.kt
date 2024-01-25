@@ -3,6 +3,7 @@ package com.example.fakestoreapi.di
 import com.example.fakestoreapi.domain.repository.ProductsRepository
 import com.example.fakestoreapi.domain.use_case.GetAllCategoryUseCase
 import com.example.fakestoreapi.domain.use_case.GetAllProductsUseCase
+import com.example.fakestoreapi.domain.use_case.GetProductUseCase
 import com.example.fakestoreapi.domain.use_case.ProductsUseCases
 import dagger.Module
 import dagger.Provides
@@ -19,7 +20,8 @@ object UseCaseModule {
     fun provideProductsUseCases(repository: ProductsRepository):ProductsUseCases{
         return ProductsUseCases(
             getAllProductsUseCase = GetAllProductsUseCase(repository),
-            getAllCategoryUseCase = GetAllCategoryUseCase(repository)
+            getAllCategoryUseCase = GetAllCategoryUseCase(repository),
+            getProductUseCase = GetProductUseCase(repository)
         )
     }
 }
