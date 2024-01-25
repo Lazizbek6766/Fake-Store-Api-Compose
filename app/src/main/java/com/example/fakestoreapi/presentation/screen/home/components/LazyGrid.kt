@@ -13,27 +13,36 @@ import androidx.compose.ui.unit.dp
 import com.example.fakestoreapi.domain.model.AllProductItem
 
 @Composable
-fun LazyGrid(data: List<AllProductItem>, ustunlar: Int, isLoading:Boolean) {
+fun LazyGrid(
+    data: List<AllProductItem>,
+    ustunlar: Int,
+    isLoading: Boolean,
+    onItemClick: (Int) -> Unit
+) {
     LazyVerticalStaggeredGrid(
         columns = StaggeredGridCells.Fixed(ustunlar),
         modifier = Modifier.padding(horizontal = 8.dp)
     ) {
-        if(isLoading){
+        if (isLoading) {
             items(20) { item ->
                 Column {
-                    if(item == 1){
+                    if (item == 1) {
                         Spacer(modifier = Modifier.height(45.dp))
                     }
                     ShimmerListItem(modifier = Modifier)
                 }
             }
-        }else{
+        } else {
             itemsIndexed(data) { index, item ->
                 Column {
-                    if(index == 1){
+                    if (index == 1) {
                         Spacer(modifier = Modifier.height(45.dp))
                     }
-                    ProductItem(item = item)
+                    ProductItem(
+                        item = item,
+                        onItemClick = {
+                            onItemClick(it)
+                        })
                 }
             }
         }
