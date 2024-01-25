@@ -1,9 +1,7 @@
 package com.example.fakestoreapi.presentation.screen.home
 
-import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,27 +12,21 @@ import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.fakestoreapi.presentation.screen.home.components.CategoryLazyRow
 import com.example.fakestoreapi.presentation.screen.home.components.LazyGrid
+import com.example.fakestoreapi.presentation.screen.product.navigateProductId
+import com.example.fakestoreapi.utills.DestinationRoute.PRODUCT_ROUTE
 import com.example.fakestoreapi.utills.DestinationRoute.SEARCH_ROUTE
 
 @Composable
@@ -44,13 +36,12 @@ fun HomeScreen(
 ) {
     val viewState by viewModel.uiState.collectAsState()
     val selectedText by viewModel.selectedCategory.collectAsState()
-
     Scaffold(
         topBar = {
             Card(
                 modifier = Modifier
-                    .padding(16.dp)
-                    .clip(RoundedCornerShape(16.dp))
+                    .padding(12.dp)
+                    .clip(RoundedCornerShape(24.dp))
                     .fillMaxWidth(),
             ) {
                 Row(
@@ -62,7 +53,7 @@ fun HomeScreen(
                 ) {
                     Icon(
                         modifier = Modifier
-                            .padding(8.dp),
+                            .padding(16.dp),
                         imageVector = Icons.Default.Search,
                         contentDescription = "ArrowBack Icon"
                     )
@@ -84,11 +75,14 @@ fun HomeScreen(
                 changeText = { viewModel.onTriggerEvent(ForYouEvent.EventSelectedChange(it)) },
                 isLoading = viewState.isLoading
             )
-            Log.d("TAG", "HomeScreen: ${viewState?.categories}")
+
             LazyGrid(
                 data = viewState.products,
                 ustunlar = 2,
-                isLoading = viewState.isLoading
+                isLoading = viewState.isLoading,
+                onItemClick = {
+                    navController.navigateProductId(it)
+                }
             )
             if (viewState.error.isNotBlank()) {
                 Text(text = "AAAAA")

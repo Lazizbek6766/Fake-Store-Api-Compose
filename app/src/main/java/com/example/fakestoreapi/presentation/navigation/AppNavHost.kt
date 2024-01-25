@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.example.fakestoreapi.presentation.screen.cart.cartNavGraph
 import com.example.fakestoreapi.presentation.screen.home.homeNavGraph
+import com.example.fakestoreapi.presentation.screen.product.productNavGraph
 import com.example.fakestoreapi.presentation.screen.profile.profileNavGraph
 import com.example.fakestoreapi.presentation.screen.search.searchNavGraph
 import com.example.fakestoreapi.utills.DestinationRoute.HOME_SCREEN_ROUTE
@@ -27,5 +28,6 @@ fun AppNavHost(
         cartNavGraph(navController)
         profileNavGraph(navController)
         searchNavGraph(navController)
+        productNavGraph()
     }
 }
