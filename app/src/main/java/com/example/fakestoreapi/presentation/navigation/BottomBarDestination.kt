@@ -20,13 +20,13 @@ enum class BottomBarDestination(
         unFilledIcon = R.drawable.home,
     ),
 
-    FRIENDS(
+    CART(
         route = CART_ROUTE,
         title = R.string.cart,
         unFilledIcon = R.drawable.notification,
     ),
 
-    Profile(
+    PROFILE(
         route = MY_PROFILE_ROUTE,
         title = R.string.profile,
         unFilledIcon = R.drawable.profile,

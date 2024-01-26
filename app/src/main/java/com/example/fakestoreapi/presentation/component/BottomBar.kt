@@ -9,10 +9,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.navOptions
 import com.example.fakestoreapi.presentation.navigation.BottomBarDestination
+import com.example.fakestoreapi.presentation.screen.cart.navigateToCart
+import com.example.fakestoreapi.presentation.screen.home.navigateHome
+import com.example.fakestoreapi.presentation.screen.profile.navigateToProfile
+import androidx.core.os.trace as trace
 
 @Composable
 fun BottomBar(
@@ -25,7 +32,7 @@ fun BottomBar(
             .shadow(elevation = 16.dp)
             .padding(top = 2.dp)
     ) {
-        BottomBarDestination.values().asList().forEach {
+        BottomBarDestination.values().forEach {
             BottomItem(it, navController, currentDestination)
         }
     }
@@ -37,10 +44,7 @@ fun RowScope.BottomItem(
     navController: NavHostController,
     currentDestination: NavDestination?,
 ) {
-    val isCurrentBottomItemSelected = currentDestination?.hierarchy?.any {
-        it.route == screen.route
-    } ?: false
-
+    val selected = currentDestination.isBottomNavDestinationInHierarchy(screen)
     var icon: Int = screen.unFilledIcon
     val (iconSize, offsetY) = Pair(22.dp, 0.dp)
     NavigationBarItem(
@@ -52,7 +56,7 @@ fun RowScope.BottomItem(
                     text = stringResource(id = screen.title),
                     style = MaterialTheme.typography.labelSmall,
                     softWrap = false,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = if (isCurrentBottomItemSelected) 1f else 0.7f)
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = if (selected) 1f else 0.7f)
                 )
             }
         },
@@ -72,15 +76,33 @@ fun RowScope.BottomItem(
             selectedIconColor = MaterialTheme.colorScheme.secondary,
             selectedTextColor = MaterialTheme.colorScheme.secondary
         ),
-        selected = isCurrentBottomItemSelected,
+        selected = selected,
         onClick = {
-            screen.route.let {
-                navController.navigate(it){
-                    launchSingleTop=true
-                }
-            }
+            navigateToBottomNavDestination(screen, navController)
         }
     )
 }
+fun navigateToBottomNavDestination(bottomNav: BottomBarDestination, navController: NavController) {
+    trace(sectionName = "Navigation: ${bottomNav.name}") {
+        val bottomNavOptions = navOptions {
+            popUpTo(navController.graph.findStartDestination().id) {
+                saveState = true
+            }
+            launchSingleTop = true
+            restoreState = true
+        }
+
+        when (bottomNav) {
+            BottomBarDestination.HOME -> navController.navigateHome(bottomNavOptions)
+            BottomBarDestination.CART -> navController.navigateToCart(bottomNavOptions)
+            BottomBarDestination.PROFILE -> navController.navigateToProfile(bottomNavOptions)
+        }
+    }
+}
+
+private fun NavDestination?.isBottomNavDestinationInHierarchy(destination: BottomBarDestination) =
+    this?.hierarchy?.any {
+        it.route?.contains(destination.name, true) ?: false
+    } ?: false
 
 private val BottomBarItemVerticalOffset = 10.dp

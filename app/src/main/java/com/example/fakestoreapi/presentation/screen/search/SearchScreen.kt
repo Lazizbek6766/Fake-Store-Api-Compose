@@ -1,5 +1,6 @@
 package com.example.fakestoreapi.presentation.screen.search
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,15 +19,15 @@ import com.example.fakestoreapi.presentation.screen.home.components.CustomSearch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(
-    navController: NavController
 ) {
 
     var text by remember { mutableStateOf("") }
     var active by remember { mutableStateOf(true) }
+    Log.d("TAG", "SearchScreen: 134")
 
     LaunchedEffect(key1 = active, block = {
         if (!active) {
-            navController.popBackStack()
+//            navController.navigateUp()
         }
     })
 

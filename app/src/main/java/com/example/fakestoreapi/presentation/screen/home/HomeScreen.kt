@@ -26,12 +26,14 @@ import androidx.navigation.NavController
 import com.example.fakestoreapi.presentation.screen.home.components.CategoryLazyRow
 import com.example.fakestoreapi.presentation.screen.home.components.LazyGrid
 import com.example.fakestoreapi.presentation.screen.product.navigateProductId
+import com.example.fakestoreapi.presentation.screen.search.navigateToSearch
 import com.example.fakestoreapi.utills.DestinationRoute.PRODUCT_ROUTE
 import com.example.fakestoreapi.utills.DestinationRoute.SEARCH_ROUTE
 
 @Composable
 fun HomeScreen(
-    navController: NavController,
+    navigateToSearch: () -> Unit,
+    navigateToProduct: (Int) -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val viewState by viewModel.uiState.collectAsState()
@@ -47,7 +49,7 @@ fun HomeScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { navController.navigate(SEARCH_ROUTE) },
+                        .clickable { navigateToSearch.invoke() },
                     verticalAlignment = Alignment.CenterVertically
 
                 ) {
@@ -81,7 +83,7 @@ fun HomeScreen(
                 ustunlar = 2,
                 isLoading = viewState.isLoading,
                 onItemClick = {
-                    navController.navigateProductId(it)
+                    navigateToProduct.invoke(it)
                 }
             )
             if (viewState.error.isNotBlank()) {
