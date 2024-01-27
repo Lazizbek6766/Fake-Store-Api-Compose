@@ -14,8 +14,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -50,9 +52,10 @@ fun ProductScreen(
                     IconButton(onClick = {
 //                        navigateToBack()
                     }) {
-                        Image(
+                        Icon(
                             imageVector = ImageVector.vectorResource(id = R.drawable.ic_arrow_left),
-                            contentDescription = null
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onBackground
                         )
                     }
                 })
@@ -80,7 +83,10 @@ fun ProductScreen(
                 Row {
 
                     Column {
-                        Text(text = viewState.product!!.title)
+                        Text(
+                            text = viewState.product!!.title,
+                            color = MaterialTheme.colorScheme.onBackground
+                        )
                         StarRatingBar(viewState.product!!.rating.rate.toFloat())
                     }
 
@@ -92,7 +98,7 @@ fun ProductScreen(
                         fontSize = 28.sp,
                         lineHeight = 36.sp,
                         fontWeight = FontWeight(700),
-                        color = Color.Black,
+                        color = MaterialTheme.colorScheme.onBackground,
                     )
                 )
 
@@ -100,7 +106,8 @@ fun ProductScreen(
                     text = viewState.product!!.description,
                     modifier = Modifier
                         .weight(1f)
-                        .verticalScroll(rememberScrollState())
+                        .verticalScroll(rememberScrollState()),
+                    color = MaterialTheme.colorScheme.onBackground
                 )
 
                 Row(
@@ -111,9 +118,9 @@ fun ProductScreen(
                         Text(
                             text = "Add to card",
                             modifier = Modifier
-                                .background(Color.Black)
+                                .background(MaterialTheme.colorScheme.onBackground)
                                 .padding(horizontal = 16.dp, vertical = 8.dp),
-                            color = Color.White
+                            color = MaterialTheme.colorScheme.background
                         )
                     }
                 }

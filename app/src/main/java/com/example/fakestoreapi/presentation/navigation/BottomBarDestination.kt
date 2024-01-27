@@ -23,7 +23,7 @@ enum class BottomBarDestination(
     CART(
         route = CART_ROUTE,
         title = R.string.cart,
-        unFilledIcon = R.drawable.notification,
+        unFilledIcon = R.drawable.shopping_cart,
     ),
 
     PROFILE(

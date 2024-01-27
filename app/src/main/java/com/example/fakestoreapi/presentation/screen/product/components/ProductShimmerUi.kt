@@ -21,9 +21,11 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.example.fakestoreapi.R
 
 @Composable
 fun StarRatingBar(
@@ -40,14 +42,15 @@ fun StarRatingBar(
     ) {
         for (i in 1..maxStars) {
             val isSelected = i <= rating
-            val icon = if (isSelected) Icons.Filled.Star else Icons.Default.Star
-            val iconTintColor = if (isSelected) Color(0xFFFFC700) else Color(0x33FFFFFF)
+            val icon = painterResource(id = R.drawable.star)
+            val iconTintColor = if (isSelected) Color(0xFFFFC700) else Color.Gray
             Icon(
-                imageVector = icon,
+                painter = icon,
                 contentDescription = null,
                 tint = iconTintColor,
                 modifier = Modifier
-                    .width(starSize).height(starSize)
+                    .width(starSize)
+                    .height(starSize)
             )
 
             if (i < maxStars) {
@@ -55,9 +58,4 @@ fun StarRatingBar(
             }
         }
     }
-}
-@Preview(showBackground = true)
-@Composable
-fun PreStar(){
-    StarRatingBar(3F)
 }

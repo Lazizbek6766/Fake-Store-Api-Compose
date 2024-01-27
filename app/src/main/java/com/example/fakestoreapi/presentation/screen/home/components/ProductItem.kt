@@ -65,7 +65,7 @@ fun ProductItem(
             modifier = Modifier
                 .align(Alignment.CenterHorizontally),
             style = TextStyle(
-                color = Color.Black,
+                color = MaterialTheme.colorScheme.onBackground,
                 fontSize = 14.sp,
                 fontWeight = FontWeight(600)
             ),

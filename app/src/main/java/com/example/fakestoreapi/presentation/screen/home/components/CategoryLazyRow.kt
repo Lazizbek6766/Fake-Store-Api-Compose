@@ -11,6 +11,8 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -44,15 +46,18 @@ fun CategoryLazyRow(
                     Card(
                         modifier = Modifier
                             .padding(vertical = 4.dp, horizontal = 4.dp),
-                        border = BorderStroke(1.dp, Color.Black),
-                        shape = RoundedCornerShape(16.dp)
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onBackground),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(
+                            contentColor = MaterialTheme.colorScheme.background
+                        )
                     ) {
                         Text(
                             text = item,
                             modifier = Modifier
-                                .background(Color.Black)
+                                .background(MaterialTheme.colorScheme.onBackground)
                                 .padding(vertical = 4.dp, horizontal = 12.dp),
-                            color = Color.White,
+                            color = MaterialTheme.colorScheme.background,
                             style = TextStyle(
                                 fontSize = 16.sp,
                                 lineHeight = 24.sp,
@@ -65,16 +70,19 @@ fun CategoryLazyRow(
                     Card(
                         modifier = Modifier
                             .padding(vertical = 4.dp, horizontal = 4.dp),
-                        border = BorderStroke(1.dp, Color.Black),
-                        shape = RoundedCornerShape(16.dp)
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onBackground),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(
+                            contentColor = MaterialTheme.colorScheme.onBackground
+                        )
                     ) {
                         Text(
                             text = item,
                             modifier = Modifier
-                                .background(Color.White)
+                                .background(MaterialTheme.colorScheme.background)
                                 .padding(vertical = 4.dp, horizontal = 12.dp)
                                 .clickable { changeText(item) },
-                            color = Color.Black,
+                            color = MaterialTheme.colorScheme.onBackground,
                             style = TextStyle(
                                 fontSize = 16.sp,
                                 lineHeight = 24.sp,

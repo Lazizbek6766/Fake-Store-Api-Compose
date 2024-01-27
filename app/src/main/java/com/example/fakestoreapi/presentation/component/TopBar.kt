@@ -2,7 +2,7 @@ package com.example.fakestoreapi.presentation.component
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
@@ -19,14 +19,14 @@ fun CustomTopBar(
         Text(
             text = text,
             modifier = Modifier.fillMaxWidth(),
-            color = MaterialTheme.colors.onBackground,
-            style = MaterialTheme.typography.body2
+            color = MaterialTheme.colorScheme.onBackground,
+            style = MaterialTheme.typography.bodySmall
         )
     },
     navigationIcon: @Composable (() -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {},
-    backgroundColor: Color = MaterialTheme.colors.background,
-    contentColor: Color = MaterialTheme.colors.background,
+    backgroundColor: Color = MaterialTheme.colorScheme.background,
+    contentColor: Color = MaterialTheme.colorScheme.background,
     elevation: Dp = 0.dp
 ) {
     TopAppBar(

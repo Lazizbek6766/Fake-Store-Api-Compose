@@ -12,6 +12,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,15 +21,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.BlendMode.Companion.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.example.fakestoreapi.presentation.screen.home.components.CategoryLazyRow
 import com.example.fakestoreapi.presentation.screen.home.components.LazyGrid
-import com.example.fakestoreapi.presentation.screen.product.navigateProductId
-import com.example.fakestoreapi.presentation.screen.search.navigateToSearch
-import com.example.fakestoreapi.utills.DestinationRoute.PRODUCT_ROUTE
-import com.example.fakestoreapi.utills.DestinationRoute.SEARCH_ROUTE
 
 @Composable
 fun HomeScreen(
@@ -59,7 +56,10 @@ fun HomeScreen(
                         imageVector = Icons.Default.Search,
                         contentDescription = "ArrowBack Icon"
                     )
-                    Text(text = "Search...")
+                    Text(
+                        text = "Search...",
+                        color = MaterialTheme.colorScheme.onBackground,
+                        )
                 }
             }
         }

@@ -68,7 +68,7 @@ fun RowScope.BottomItem(
                     .padding(bottom = 9.dp)
                     .size(iconSize)
                     .offset(y = offsetY),
-                tint = Color.Unspecified,
+                tint = MaterialTheme.colorScheme.onBackground,
             )
         },
         colors = NavigationBarItemDefaults.colors(
