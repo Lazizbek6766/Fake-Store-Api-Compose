@@ -19,8 +19,8 @@ fun CustomTopBar(
         Text(
             text = text,
             modifier = Modifier.fillMaxWidth(),
-            color = MaterialTheme.colors.secondary,
-            style = MaterialTheme.typography.subtitle1
+            color = MaterialTheme.colors.onBackground,
+            style = MaterialTheme.typography.body2
         )
     },
     navigationIcon: @Composable (() -> Unit)? = null,
