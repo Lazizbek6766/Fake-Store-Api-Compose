@@ -104,6 +104,8 @@ dependencies {
     implementation ("com.google.accompanist:accompanist-navigation-animation:0.28.0")
 
     implementation ("androidx.core:core-splashscreen:1.1.0-alpha02")
+
+    implementation("me.saket.swipe:swipe:1.2.0")
 }
 kapt {
     correctErrorTypes = true

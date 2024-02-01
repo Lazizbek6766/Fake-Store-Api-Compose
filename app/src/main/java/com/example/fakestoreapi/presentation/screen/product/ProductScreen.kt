@@ -26,6 +26,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -115,13 +116,23 @@ fun ProductScreen(
                 ) {
                     Spacer(modifier = Modifier.weight(1f))
                     Card {
-                        Text(
-                            text = "Add to card",
+                        Row(
                             modifier = Modifier
                                 .background(MaterialTheme.colorScheme.onBackground)
                                 .padding(horizontal = 16.dp, vertical = 8.dp),
-                            color = MaterialTheme.colorScheme.background
-                        )
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.shopping_cart),
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.background
+                            )
+                            Text(
+                                text = "Add to card",
+                                color = MaterialTheme.colorScheme.background
+                            )
+                        }
+                       
                     }
                 }
             }
