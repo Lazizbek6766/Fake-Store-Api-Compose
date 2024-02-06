@@ -41,7 +41,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.fakestoreapi.R
@@ -140,8 +142,8 @@ fun CardView(
             Card(
                 modifier = Modifier
                     .padding(end = 8.dp)
-                    .height(50.dp)
-                    .width(100.dp),
+                    .height(30.dp)
+                    .width(60.dp),
                 shape = RoundedCornerShape(16.dp)
             ) {
                 Row(
@@ -155,8 +157,7 @@ fun CardView(
 
                     Icon(
                         modifier = Modifier
-                            .size(24.dp)
-                            .padding(vertical = 8.dp),
+                            .size(24.dp),
                         imageVector = ImageVector.vectorResource(id = R.drawable.ic_minus),
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.onBackground
@@ -171,8 +172,8 @@ fun CardView(
                         onValueChange = {text = it},
                         colors = TextFieldDefaults.textFieldColors(
                             unfocusedIndicatorColor = Color.Transparent,
-                            containerColor = Color.Transparent)
-                        )
+                        ),
+                    )
                     Icon(
                         modifier = Modifier
                             .size(24.dp),
@@ -200,7 +201,8 @@ fun CardText(
         Text(
             text = name,
             maxLines = 1,
-            color = MaterialTheme.colorScheme.onBackground
+            color = MaterialTheme.colorScheme.onBackground,
+            fontSize = 24.sp
         )
         Spacer(modifier = Modifier.weight(1F))
         Text(

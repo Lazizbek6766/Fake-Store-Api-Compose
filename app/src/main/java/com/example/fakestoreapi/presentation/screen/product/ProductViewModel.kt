@@ -6,8 +6,10 @@ import com.example.fakestoreapi.domain.use_case.ProductsUseCases
 import com.example.fakestoreapi.utills.UiStateObject
 import com.example.fakestoreapi.utills.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,6 +25,7 @@ class ProductViewModel @Inject constructor(
             setEvent(ProductEvent.SnackBarError("Something went wrong"))
         }
         getProduct(uiState.value.productId)
+        errorSneck()
     }
 
     fun getProduct(productId:Int) {
@@ -40,6 +43,14 @@ class ProductViewModel @Inject constructor(
                 else -> {}
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun errorSneck() {
+        viewModelScope.launch {
+            delay(2000)
+
+            setState { currentState.copy(isLoading = false, error = "Salom") }
+        }
     }
 
     override fun createInitialState(): ProductViewState = ProductViewState()
