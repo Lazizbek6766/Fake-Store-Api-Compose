@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "282364480135",
+    "project_id": "fakestoreapi-6d851",
+    "storage_bucket": "fakestoreapi-6d851.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:282364480135:android:14ebc724167ee9185a8622",
+        "android_client_info": {
+          "package_name": "com.example.fakestoreapi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAO2K9G1NaCe3imSHb7tasngPYhe6WZp6g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
